@@ -11,9 +11,9 @@ class BTDebug : public Print {
   public:
     BTDebug(HardwareSerial& p, BluetoothSerial& s) : _primary(p), _secondary(s) {}
 
-    void begin(unsigned long baud) {
+    void begin(unsigned long baud, const char* name) {
       _primary.begin(baud);
-      _secondary.begin(baud);
+      _secondary.begin(name);
     }
 
     size_t write(uint8_t c) override {
