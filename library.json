@@ -1,0 +1,15 @@
+{
+  "name": "BT Debug",
+  "version": "1.0.0",
+  "description": "A simple library to intercept Serial calls and redirect them to bluetooth",
+  "keywords": ["sensor", "example"],
+  "authors": [
+    {
+      "name": "Paulo Prates",
+      "email": "paulo.prates01@hotmail.com"
+    }
+  ],
+  "license": "MIT",
+  "frameworks": ["arduino"],
+  "platforms": ["espressif32"]
+}
