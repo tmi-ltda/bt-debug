@@ -3,24 +3,24 @@
 #include <Arduino.h>
 #include <BluetoothSerial.h>
 
-class BTDebug : public Print {
+class BTDebug : public HardwareSerial {
   private:
-    HardwareSerial& _primary;
-    BluetoothSerial& _secondary;
+    BluetoothSerial& _bt;
 
   public:
-    BTDebug(HardwareSerial& p, BluetoothSerial& s) : _primary(p), _secondary(s) {}
-
-    void begin(unsigned long baud, const char* name) {
-      _primary.begin(baud);
-      _secondary.begin(name);
-    }
+    BTDebug(int uart_num, BluetoothSerial& bt) : _bt(bt) {}
 
     size_t write(uint8_t c) override {
-      _primary.write(c);
-      _secondary.write(c);
-      return 1;
+      _bt.write(c);
+
+      return HardwareSerial::write(c);
     }
 
-    using Print::write;
+    size_t write(const uint8_t *buffer, size_t size) override {
+        _bt.write(buffer, size);
+        
+        return HardwareSerial::write(buffer, size);
+    }
+
+    using HardwareSerial::write;
 };
