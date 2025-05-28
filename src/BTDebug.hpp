@@ -8,7 +8,7 @@ class BTDebug : public HardwareSerial {
     BluetoothSerial& _bt;
 
   public:
-    BTDebug(int uart_num, BluetoothSerial& bt) : _bt(bt) {}
+    BTDebug(int uart_num, BluetoothSerial& bt) : HardwareSerial(uart_num), _bt(bt) { }
 
     size_t write(uint8_t c) override {
       _bt.write(c);
